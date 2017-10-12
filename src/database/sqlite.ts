@@ -1,5 +1,4 @@
 import { DatabaseDriver } from './database-driver';
-var sqlite3 = require('sqlite3');
 
 export class SQLiteDatabase implements DatabaseDriver {
     /**
@@ -13,6 +12,7 @@ export class SQLiteDatabase implements DatabaseDriver {
      * Create a new cache instance.
      */
     constructor(private options) {
+        var sqlite3 = require('sqlite3');
         let path = process.cwd() + options.databaseConfig.sqlite.databasePath;
         this._sqlite = new sqlite3.cached.Database(path);
         this._sqlite.serialize(() => {
